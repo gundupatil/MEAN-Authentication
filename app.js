@@ -21,9 +21,10 @@ mongoose.connection.on('error', (err)=>{
 const app = express();
 
 const users = require('./routes/users');
+const contct = require('./routes/route');
 
-//const port =3012;
-const port = process.env.PORT||8080;
+const port =3000;
+//const port = process.env.PORT||8080;
 
 // cors middleware
 app.use(cors());
@@ -41,6 +42,8 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 
+app.use('/api', contct);
+//app.get('/contacts',route);
 //Index route
 app.get('/', (req, res)=>{
     res.send("Invalid End Point");
@@ -52,4 +55,4 @@ app.get('*',(req,res)=>{
 //start server
 app.listen(port, ()=>{
     console.log("server started at port:"+port);
-})
+});
